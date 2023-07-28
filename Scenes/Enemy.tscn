@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://c07tcxf1ayuwr"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_1hkic"]
+[ext_resource type="Texture2D" uid="uid://dafg4jtaxkj45" path="res://Mats-Tex-Sprts/enemy.png" id="2_aqvcm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b4hbe"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rva1g"]
+radius = 252.602
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_1hkic")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CircleShape2D_b4hbe")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = 1.57079
+texture = ExtResource("2_aqvcm")
+
+[node name="RayCast" type="RayCast2D" parent="."]
+top_level = true
+target_position = Vector2(0, 0)
+collision_mask = 3
+
+[node name="Whisker" type="RayCast2D" parent="."]
+target_position = Vector2(24, 0)
+collision_mask = 3
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+path_max_distance = 400.0
+path_postprocessing = 1
+debug_enabled = true
+debug_path_custom_color = Color(0.717647, 0.129412, 0.419608, 1)
+
+[node name="WanderPoint" type="Marker2D" parent="."]
+position = Vector2(128, 0)
+
+[node name="TurnTimer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[node name="Nose" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="Nostril2" type="CollisionShape2D" parent="Nose"]
+shape = SubResource("CircleShape2D_rva1g")
+
+[node name="Nostril" type="CollisionPolygon2D" parent="Nose"]
+polygon = PackedVector2Array(1024, -1152, 1024, 1152, 0, 16, 0, -16)
+
+[connection signal="body_entered" from="Nose" to="." method="_on_nose_body_entered"]
+[connection signal="body_exited" from="Nose" to="." method="_on_nose_body_exited"]

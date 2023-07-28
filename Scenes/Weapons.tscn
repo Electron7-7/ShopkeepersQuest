@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://rq5rxxsev12s"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons.gd" id="1_eopby"]
+[ext_resource type="Texture2D" uid="uid://ompy6gs3mjay" path="res://Mats-Tex-Sprts/knife.png" id="2_7dhya"]
+[ext_resource type="Texture2D" uid="uid://1eb6r6twa8ar" path="res://Mats-Tex-Sprts/pistol.png" id="3_wlpce"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ggfmc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7dhya")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n16na"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wlpce")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[node name="Weapons" type="Node2D"]
+script = ExtResource("1_eopby")
+
+[node name="WeaponSprites" type="Node2D" parent="."]
+
+[node name="Knife" type="AnimatedSprite2D" parent="WeaponSprites"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ggfmc")
+animation = &"idle"
+
+[node name="Pistol" type="AnimatedSprite2D" parent="WeaponSprites"]
+visible = false
+position = Vector2(5, 1)
+rotation = -0.0872665
+sprite_frames = SubResource("SpriteFrames_n16na")
+animation = &"idle"

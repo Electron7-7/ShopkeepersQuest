@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1vinvr2nhkdf"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8nosg"]
+[ext_resource type="Texture2D" uid="uid://hjl0dy8wfjlc" path="res://Mats-Tex-Sprts/player.png" id="2_ab1n8"]
+[ext_resource type="PackedScene" uid="uid://rq5rxxsev12s" path="res://Scenes/Weapons.tscn" id="3_k6rw5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrs7g"]
+radius = 17.0294
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_8nosg")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_ab1n8")
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-11, -11, -7, -13, -1, -13, 10, -7, 16, 0, 10, 6, -1, 13, -8, 13, -13, 10, -15, 5, -15, -5)
+
+[node name="Weapons" parent="." instance=ExtResource("3_k6rw5")]
+z_index = 2
+position = Vector2(0, 19)
+
+[node name="Camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Musk" type="Area2D" parent="." groups=["Player"]]
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Musk"]
+shape = SubResource("CircleShape2D_xrs7g")

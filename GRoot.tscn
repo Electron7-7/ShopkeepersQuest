@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfstxmctbhoom"]
+
+[ext_resource type="Script" path="res://GRoot.gd" id="1_l48a0"]
+
+[node name="GameRoot" type="Node"]
+script = ExtResource("1_l48a0")
+
+[node name="Debug" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_right = 640.0
+offset_bottom = 360.0
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
